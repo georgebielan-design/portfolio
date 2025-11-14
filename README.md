@@ -15,3 +15,31 @@ Welcome to my personal portfolio. This repository showcases my work in:
 This portfolio is a collection of projects I am building to demonstrate my skills in markets, valuation, and applied financial modeling.
 
 More projects will be added soon.
+
+## Sample QQQ-Style Rebalancing Engine (Python)
+
+This project simulates a rules-based rebalancing process for a portfolio modeled on the Nasdaq-100 (Invesco QQQ®).
+
+### What it does
+
+- Reads the full QQQ constituent list and index weights from `qqq_holdings.csv`
+- Normalizes raw ETF weights into target portfolio weights (including a cash sleeve)
+- Pulls live market data via `yfinance`
+- Calculates current portfolio value (stocks + cash) and current weights
+- Computes the dollar and share differences required to move toward index weights
+- Applies:
+  - A maximum turnover constraint (e.g., 5% of portfolio value)
+  - A minimum trade size filter (e.g., ignore trades under $100)
+  - Whole-share rounding for realistic execution
+- Outputs:
+  - A console table of BUY/SELL trade tickets
+  - A CSV file `rebalance_orders.csv` with final, executable trade instructions
+
+### Files
+
+```text
+projects/
+  portfolio-rebalancer/
+    main.py              # Rebalancing engine
+    qqq_holdings.csv     # QQQ constituents + sample shares + index weights
+    rebalance_orders.csv # Generated trade tickets (created when main.py runs)
