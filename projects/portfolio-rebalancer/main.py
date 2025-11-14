@@ -203,13 +203,18 @@ print(f"Trades skipped (rounded to zero): {skipped_zero}")
 # 7. Export final trades to CSV
 # ------------------------------------------------------------
 
-output_path = "rebalance_orders.csv"
+output_path = "rebalance_orders_sample.csv"
 
 with open(output_path, "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["Ticker", "Action", "Shares", "Price", "DollarAmount"])
-    for t, action, shares, price, dollar_amt in final_trades:
-        writer.writerow([t, action, shares, price, dollar_amt])
 
-print(f"\nExported {len(final_trades)} trades to {output_path}")
-print("\n--- End of Rebalance Calculation ---\n")
+    for t, action, shares, price, dollar_amt in final_trades:
+        writer.writerow([
+            t,
+            action,
+            shares,
+            f"${price:,.2f}",
+            f"${dollar_amt:,.2f}"
+        ])
+
