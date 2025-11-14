@@ -1,0 +1,8 @@
+# macOS junk
+.DS_Store
+
+# Rebalance output file (should not be tracked)
+projects/portfolio-rebalancer/rebalance_orders.csv
+
+# RTF backups or temp files
+*.rtf
