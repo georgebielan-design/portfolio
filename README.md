@@ -44,25 +44,3 @@ projects/
     qqq_holdings.csv     # QQQ constituents + sample shares + index weights
     rebalance_orders.csv # Generated trade tickets (created when main.py runs)
 
-### Example Rebalance Output (rebalance_orders_sample.csv)
-
-The file `rebalance_orders_sample.csv` provides a sample of the actual trade tickets produced by the engine.  
-It reflects the exact parameters used in the current version of the model:
-
-- **Turnover-limited rebalancing:** Maximum 5% portfolio turnover  
-- **Minimum trade size:** Trades under **$100 notional** are skipped  
-- **Whole-share execution:** All trades are rounded to whole shares  
-- **Scaled orders:** If raw turnover exceeds the limit, all trades are proportionally scaled  
-- **Live pricing:** Execution prices are pulled dynamically via `yfinance`  
-- **Cash handling:** Residual weight allocated to “CASH” in the model and included in total portfolio value  
-
-Each row in `rebalance_orders_sample.csv` includes:
-
-- Ticker  
-- BUY/SELL action  
-- Rounded share quantity  
-- Executable price (formatted to two decimals)  
-- Total notional value of the trade (also two decimals)  
-
-This file serves as a realistic example of what a production rebalancing engine would send to a trader, OMS, or brokerage API.
-
